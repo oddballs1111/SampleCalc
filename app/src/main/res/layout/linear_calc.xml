@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    >
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/initial_num"
+        android:gravity="right"
+        android:textSize="@dimen/display_text_size"
+        >
+    </TextView>
+    <LinearLayout
+        style="@style/LinearHorizontalTheme"
+        >
+
+        <Button
+            style="@style/NumberButtonTheme"
+            android:text="@string/seven"
+            />
+
+        <Button
+            style="@style/NumberButtonTheme"
+            android:text="@string/eight"
+            />
+
+        <Button
+            style="@style/NumberButtonTheme"
+            android:text="@string/nine"
+            />
+
+        <Button
+            style="@style/BaseButtonTheme"
+            android:text="@string/plus"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/LinearHorizontalTheme"
+        >
+
+        <Button
+            style="@style/NumberButtonTheme"
+            android:text="@string/four"
+            />
+
+        <Button
+            style="@style/NumberButtonTheme"
+            android:text="@string/five"
+            />
+
+        <Button
+            style="@style/NumberButtonTheme"
+            android:text="@string/six"
+            />
+
+        <Button
+            style="@style/BaseButtonTheme"
+            android:text="@string/minus"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/LinearHorizontalTheme"
+        >
+
+        <Button
+            style="@style/NumberButtonTheme"
+            android:text="@string/one"
+            />
+
+        <Button
+            style="@style/NumberButtonTheme"
+            android:text="@string/two"
+            />
+
+        <Button
+            style="@style/NumberButtonTheme"
+            android:text="@string/three"
+            />
+
+
+        <Button
+            style="@style/BaseButtonTheme"
+            android:text="@string/multi"
+            />
+
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/LinearHorizontalTheme"
+        >
+
+        <Button
+            style="@style/NumberButtonTheme"
+            android:text="@string/zero"
+            />
+
+        <Button
+            style="@style/BaseButtonTheme"
+            android:text="@string/equal"
+            />
+
+        <Button
+            style="@style/BaseButtonTheme"
+            android:text="@string/div"
+            />
+
+    </LinearLayout>
+</LinearLayout>
