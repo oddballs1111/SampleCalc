@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape
+    android:shape="rectangle"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <!-- 丸み -->
+    <corners android:radius="@dimen/base_button_radius" />
+
+    <!-- 背景色の設定 -->
+    <gradient
+        android:startColor="@color/numberButtonPressedStartColor"
+        android:endColor="@color/numberButtonPressedEndColor"
+     />
+</shape>
