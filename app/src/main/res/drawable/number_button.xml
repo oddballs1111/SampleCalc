@@ -10,5 +10,5 @@
     <gradient
         android:startColor="@color/colorPrimaryDark"
         android:endColor="@color/colorPrimaryDark"
-        ></gradient>
+        />
 </shape>

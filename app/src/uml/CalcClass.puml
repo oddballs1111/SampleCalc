@@ -1,0 +1,58 @@
+@startuml
+MainActivity ..|> InputContract
+
+State <|.. NumberAState
+State <|.. NumberBState
+State <|.. ResultState
+State <|.. OperationState
+
+CalcModel -- Operation
+
+class MainActivity{
+}
+
+interface InputContract {
+  +{abstract} onInputNumber(int)
+  +{abstract} onInputOperation(Operation)
+  +{abstract} onInputEqual()
+}
+
+class CalcModel {
+  -int numA
+  -int numB
+  -String dispNum
+  - Opetation ope
+}
+
+interface State {
+  + {abstract} InputNumber(int, State)
+  + {abstract} InputOperation(Operation, State)
+  + {abstract} InputEqual(State)
+}
+
+class NumberAState {
+}
+
+class OperationState {
+}
+
+class NumberBState {
+}
+
+class ResultState {
+}
+
+enum Operation{
+  PLUS
+  MINUS
+  MULTI
+  DIV
+
+  +eval(int,int)
+}
+
+
+note right of InputContract
+  Activityの入力処理を通知するインターフェース
+end note
+@enduml
