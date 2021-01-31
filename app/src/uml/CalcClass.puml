@@ -1,5 +1,8 @@
 @startuml
-MainActivity ..|> InputContract
+MainActivity --> InputContract
+CalcController ..|> InputContract
+CalcController --> State
+CalcController -- CalcModel
 
 State <|.. NumberAState
 State <|.. NumberBState
@@ -17,9 +20,15 @@ interface InputContract {
   +{abstract} onInputEqual()
 }
 
+class CalcController {
+  -CalcModel model
+  -State state
+}
+
+
 class CalcModel {
-  -int numA
-  -int numB
+  -BigDecimal numA
+  -BigDecimal numB
   -String dispNum
   - Opetation ope
 }

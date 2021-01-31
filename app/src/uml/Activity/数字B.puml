@@ -1,0 +1,25 @@
+@startuml
+start
+floating note left: 状態が数字Bの場合の処理
+ :BigDecimal a
+ BigDecimal b
+ string displayNum
+ Operation ope|
+if (数字押下) then (yes)
+  :displayNum += 押下された数字;
+  :b = Integer.parseInt(displayNum);
+  :displayNumを表示;
+elseif (四則演算押下) then (yes)
+  :displayNum = a ope bの計算を実行;
+  :displayNumを表示;
+  :a = Integer.parseInt(displayNum);
+  :Ope = 押下された四則演算;
+  :四則演算状態に遷移;
+else (イコール押下)
+  :displayNum = a ope bの計算を実行;
+  :displayNumを表示;
+  :a = Integer.parseInt(displayNum);
+  :計算結果状態に遷移;
+endif
+stop
+@enduml
