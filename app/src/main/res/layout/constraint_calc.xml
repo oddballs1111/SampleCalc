@@ -39,7 +39,7 @@
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@drawable/normal_button_selector"
-        android:text="@string/multi"
+        android:text="@string/div"
         android:theme="@style/BaseButtonTheme"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

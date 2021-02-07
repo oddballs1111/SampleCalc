@@ -1,8 +1,8 @@
-package com.example.samplecalc;
+package com.example.samplecalc.model;
 
 import java.math.BigDecimal;
 
-enum Operation {
+public enum Operation {
     PLUS {
         public BigDecimal eval(BigDecimal x, BigDecimal y) {
             return (x.add(y));

@@ -15,7 +15,7 @@ class MainActivity{
 }
 
 interface InputContract {
-  +{abstract} onInputNumber(int)
+  +{abstract} onInputNumber(String)
   +{abstract} onInputOperation(Operation)
   +{abstract} onInputEqual()
 }
@@ -34,7 +34,7 @@ class CalcModel {
 }
 
 interface State {
-  + {abstract} InputNumber(int, State)
+  + {abstract} InputNumber(String, State)
   + {abstract} InputOperation(Operation, State)
   + {abstract} InputEqual(State)
 }
