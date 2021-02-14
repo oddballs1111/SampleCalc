@@ -19,6 +19,7 @@
     <string name="minus">－</string>
     <string name="multi">×</string>
     <string name="div">÷</string>
+    <string name="allclear">AC</string>
 
     <!-- イコールの文字 -->
     <string name="equal">＝</string>

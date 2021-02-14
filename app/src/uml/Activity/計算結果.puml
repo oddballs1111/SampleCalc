@@ -6,6 +6,7 @@ floating note left: 状態が計算結果の場合の処理
  string displayNum
  Operation ope|
 if (数字押下) then (yes)
+  :displayNum = 0に初期化;
   :displayNum = 押下された数字;
   :a = Integer.parseInt(displayNum);
   :displayNumを表示;

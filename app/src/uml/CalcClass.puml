@@ -1,8 +1,11 @@
 @startuml
 MainActivity --> InputContract
+MainActivity ..|> OnDisplayNumObserver
 CalcController ..|> InputContract
-CalcController --> State
+CalcController ..|> StateContract
 CalcController -- CalcModel
+State --> StateContract
+CalcModel --> OnDisplayNumObserver
 
 State <|.. NumberAState
 State <|.. NumberBState
@@ -18,6 +21,7 @@ interface InputContract {
   +{abstract} onInputNumber(String)
   +{abstract} onInputOperation(Operation)
   +{abstract} onInputEqual()
+  +{abstract} setDisplayNumObserver(OnDisplayNumObserver)
 }
 
 class CalcController {
@@ -31,12 +35,20 @@ class CalcModel {
   -BigDecimal numB
   -String dispNum
   - Opetation ope
+  - OnDisplayNumObserver observer
+}
+
+interface OnDisplayNumObserver{
+  + {abstract} onChange(String)
+}
+interface StateContract {
+  + {abstract} changeState(State)
 }
 
 interface State {
-  + {abstract} InputNumber(String, State)
-  + {abstract} InputOperation(Operation, State)
-  + {abstract} InputEqual(State)
+  + {abstract} InputNumber(String, StateContract, CalcModel)
+  + {abstract} InputOperation(Operation, StateContract, CalcModel)
+  + {abstract} InputEqual(StateContract, CalcModel)
 }
 
 class NumberAState {

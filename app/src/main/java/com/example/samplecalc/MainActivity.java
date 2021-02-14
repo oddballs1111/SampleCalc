@@ -6,14 +6,16 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.samplecalc.controller.CalcController;
+import com.example.samplecalc.controller.OnDisplayNumObserver;
 import com.example.samplecalc.model.InputContract;
 import com.example.samplecalc.model.Operation;
 
 import java.math.BigDecimal;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener {
+public class MainActivity extends AppCompatActivity implements View.OnClickListener, OnDisplayNumObserver {
     private final String TAG = "MainActivity";
     private InputContract mContract;
 
@@ -43,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         super.onCreate(savedInstanceState);
         setContentView(R.layout.constraint_calc);
         mContract = new CalcController();
+        mContract.setDisplayNumObserver(this);
 
 //        Operation ope = Operation.PLUS;
 //        Log.d(TAG, "ope = " + ope);
@@ -134,6 +137,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         int id = view.getId();
         switch(id) {
             case R.id.zeroButton:
+            case R.id.oneButton:
             case R.id.twoButton:
             case R.id.threeButton:
             case R.id.fourButton:
@@ -151,15 +155,31 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             case R.id.multiButton:
             case R.id.divButton:
                 Log.d(TAG, "sendMessage : oparationButton : " + ((Button)view).getText());
-                mContract.InputOperation(Operation.PLUS);
+                mContract.InputOperation(Operation.getOperationById(id));
                 break;
 
             case R.id.equalButton:
                 Log.d(TAG, "sendMessage : equalButton : " + ((Button)view).getText());
                 mContract.InputEqual();
                 break;
+
+            case R.id.allClearButton:
+                Log.d(TAG, "sendMessage : allClearButton : " + ((Button)view).getText());
+                //AllClearボタン押下時の処理
+                mContract.InputAllClear();
+                break;
             default:
                 /* do nothing */
+                break;
         }
+    }
+
+    @Override
+    public void onChange(String num) {
+        //Displayの表示更新を行う
+        TextView text = (TextView) findViewById(R.id.displayNum);
+        Log.d(TAG, "onChange:num = " + num);
+        Log.d(TAG, "onChange:text = " + text);
+        text.setText(num);
     }
 }
