@@ -3,6 +3,7 @@ package com.example.samplecalc.model;
 import com.example.samplecalc.R;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 public enum Operation {
     PLUS(R.id.plusButton) {
@@ -22,7 +23,7 @@ public enum Operation {
     },
     DIV(R.id.divButton){
         public BigDecimal eval(BigDecimal x, BigDecimal y) {
-            return (x.divide(y));
+            return (x.divide(y, 100, RoundingMode.HALF_UP));
         }
     };
 

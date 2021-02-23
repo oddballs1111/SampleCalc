@@ -1,6 +1,7 @@
 package com.example.samplecalc;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
 
 import android.os.Bundle;
 import android.util.Log;
@@ -10,10 +11,9 @@ import android.widget.TextView;
 
 import com.example.samplecalc.controller.CalcController;
 import com.example.samplecalc.controller.OnDisplayNumObserver;
+import com.example.samplecalc.databinding.ConstraintCalcBinding;
 import com.example.samplecalc.model.InputContract;
 import com.example.samplecalc.model.Operation;
-
-import java.math.BigDecimal;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, OnDisplayNumObserver {
     private final String TAG = "MainActivity";
@@ -43,9 +43,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.constraint_calc);
+
+//        setContentView(R.layout.constraint_calc);
+        ConstraintCalcBinding binding = DataBindingUtil.setContentView(this, R.layout.constraint_calc);
         mContract = new CalcController();
         mContract.setDisplayNumObserver(this);
+        binding.setHandler(mContract);
 
 //        Operation ope = Operation.PLUS;
 //        Log.d(TAG, "ope = " + ope);
@@ -160,7 +163,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
             case R.id.equalButton:
                 Log.d(TAG, "sendMessage : equalButton : " + ((Button)view).getText());
-                mContract.InputEqual();
+//                mContract.InputEqual();
                 break;
 
             case R.id.allClearButton:
