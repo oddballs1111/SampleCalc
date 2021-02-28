@@ -18,6 +18,7 @@ public class CalcController implements InputContract, StateContract {
         mState = new NumberAState();
         mCalcModel = new CalcModel();
     }
+
     @Override
     public void InputNumber(String num) {
         Log.d(TAG, "InputNumber num = " + num);

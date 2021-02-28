@@ -15,40 +15,24 @@ import com.example.samplecalc.databinding.ConstraintCalcBinding;
 import com.example.samplecalc.model.InputContract;
 import com.example.samplecalc.model.Operation;
 
-public class MainActivity extends AppCompatActivity implements View.OnClickListener, OnDisplayNumObserver {
+public class MainActivity extends AppCompatActivity implements OnDisplayNumObserver {
     private final String TAG = "MainActivity";
     private InputContract mContract;
-
-    private View.OnClickListener mOnClickListener = new View.OnClickListener(){
-        public void onClick(View v) {
-            int id = v.getId();
-            switch(id) {
-                case R.id.twoButton:
-                    Log.d(TAG, "onClick : twoButton");
-                    break;
-
-                case R.id.threeButton:
-                    Log.d(TAG, "onClick : threeButton");
-                    break;
-
-                case R.id.fourButton:
-                    Log.d(TAG, "onClick : fourButton");
-                    break;
-                default:
-                    /* do nothing */
-            }
-        }
-    };
+    private ConstraintCalcBinding mBinding;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+//        mBinding = ConstraintCalcBinding.inflate(getLayoutInflater());
+//        View view = mBinding.getRoot();
+//        setContentView(view);
+
 //        setContentView(R.layout.constraint_calc);
-        ConstraintCalcBinding binding = DataBindingUtil.setContentView(this, R.layout.constraint_calc);
+        mBinding = DataBindingUtil.setContentView(this, R.layout.constraint_calc);
         mContract = new CalcController();
         mContract.setDisplayNumObserver(this);
-        binding.setHandler(mContract);
+        mBinding.setHandler(mContract);
 
 //        Operation ope = Operation.PLUS;
 //        Log.d(TAG, "ope = " + ope);
@@ -78,30 +62,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     protected void onResume() {
         super.onResume();
         Log.d(TAG, "onResume");
-
-//        Button zeroButton = (Button) findViewById(R.id.zeroButton);
-//        zeroButton.setOnClickListener(new View.OnClickListener() {
-//            public void onClick(View v) {
-//                Log.d(TAG, "onClick : zeroButton");
-//            }
-//        });
-//
-//        Button oneButton = (Button) findViewById(R.id.oneButton);
-//        oneButton.setOnClickListener(view -> {
-//            Log.d(TAG, "onClick : oneButton");
-//        });
-//
-//        Button twoButton = (Button) findViewById(R.id.twoButton);
-//        twoButton.setOnClickListener(mOnClickListener);
-//        Button threeButton = (Button) findViewById(R.id.threeButton);
-//        threeButton.setOnClickListener(mOnClickListener);
-//        Button fourButton = (Button) findViewById(R.id.fourButton);
-//        fourButton.setOnClickListener(mOnClickListener);
-//
-//        Button fiveButton = (Button) findViewById(R.id.fiveButton);
-//        fiveButton.setOnClickListener(this);
-//        Button sixButton = (Button) findViewById(R.id.sixButton);
-//        sixButton.setOnClickListener(this);
     }
 
     @Override
@@ -123,66 +83,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     @Override
-    public void onClick(View v) {
-        int id = v.getId();
-        switch(id) {
-            case R.id.fiveButton:
-            case R.id.sixButton:
-            case R.id.sevenButton:
-                Log.d(TAG, "onClick : button : " + ((Button)v).getText());
-                break;
-            default:
-                /* do nothing */
-        }
-    }
-
-    public void sendMessage(View view) {
-        int id = view.getId();
-        switch(id) {
-            case R.id.zeroButton:
-            case R.id.oneButton:
-            case R.id.twoButton:
-            case R.id.threeButton:
-            case R.id.fourButton:
-            case R.id.fiveButton:
-            case R.id.sixButton:
-            case R.id.sevenButton:
-            case R.id.eightButton:
-            case R.id.nineButton:
-                Log.d(TAG, "sendMessage : numberButton : " + ((Button)view).getText());
-                mContract.InputNumber(((Button)view).getText().toString());
-                break;
-
-            case R.id.plusButton:
-            case R.id.minusButton:
-            case R.id.multiButton:
-            case R.id.divButton:
-                Log.d(TAG, "sendMessage : oparationButton : " + ((Button)view).getText());
-                mContract.InputOperation(Operation.getOperationById(id));
-                break;
-
-            case R.id.equalButton:
-                Log.d(TAG, "sendMessage : equalButton : " + ((Button)view).getText());
-//                mContract.InputEqual();
-                break;
-
-            case R.id.allClearButton:
-                Log.d(TAG, "sendMessage : allClearButton : " + ((Button)view).getText());
-                //AllClearボタン押下時の処理
-                mContract.InputAllClear();
-                break;
-            default:
-                /* do nothing */
-                break;
-        }
-    }
-
-    @Override
     public void onChange(String num) {
         //Displayの表示更新を行う
-        TextView text = (TextView) findViewById(R.id.displayNum);
-        Log.d(TAG, "onChange:num = " + num);
-        Log.d(TAG, "onChange:text = " + text);
-        text.setText(num);
+        mBinding.displayNum.setText(num);
     }
 }

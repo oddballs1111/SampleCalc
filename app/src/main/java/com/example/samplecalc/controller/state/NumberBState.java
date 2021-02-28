@@ -4,7 +4,7 @@ import com.example.samplecalc.model.CalcModel;
 import com.example.samplecalc.model.Operation;
 import com.example.samplecalc.model.StateContract;
 
-public class NumberBState extends BaseAllCelarState  {
+public class NumberBState extends BaseAllClearState {
     @Override
     public void InputNumber(String num, StateContract state, CalcModel calc) {
         //displayNumに数字を挿入

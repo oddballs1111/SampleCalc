@@ -6,7 +6,7 @@ import com.example.samplecalc.model.CalcModel;
 import com.example.samplecalc.model.Operation;
 import com.example.samplecalc.model.StateContract;
 
-public class NumberAState extends BaseAllCelarState {
+public class NumberAState extends BaseAllClearState {
     private final String TAG = "NumberAState";
     @Override
     public void InputNumber(String num, StateContract state, CalcModel calc) {
@@ -39,4 +39,5 @@ public class NumberAState extends BaseAllCelarState {
         //計算結果の状態に遷移
         state.changeState(new ResultState());
     }
+
 }
